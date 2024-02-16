@@ -17,12 +17,11 @@ public class DemoApplication {
   @Bean
   CommandLineRunner initDatabase(CustomerRepository repository) {
     return args -> {
-      repository.save(new Customer(null, "John Doe", "john.doe@example.com"));
-      repository.save(new Customer(null, "Jane Roe", "jane.roe@example.com"));
       repository.save(new Customer(null, "Walt", "walt@example.com"));
       repository.save(new Customer(null, "Sol", "sol@example.com"));
       repository.save(new Customer(null, "Ethan", "ethan@example.com"));
       repository.save(new Customer(null, "Kenny", "kenny@example.com"));
+      repository.save(new Customer(null, "Skylar", "skylar@example.com"));
     };
   }
 }
