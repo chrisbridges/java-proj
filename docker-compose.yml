@@ -1,5 +1,10 @@
 version: '3.8'
 services:
+  client-service:
+    image: client-service
+    ports:
+      - "3000:80"
+
   auth-service:
     image: auth-service
     ports:
