@@ -1,8 +1,8 @@
 package main.java.com.example.authservice.controller;
 
-import com.example.authservice.model.User;
-import com.example.authservice.security.JwtTokenProvider;
-import com.example.authservice.service.UserService;
+import main.java.com.example.authservice.model.User;
+import main.java.com.example.authservice.security.JwtTokenProvider;
+import main.java.com.example.authservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

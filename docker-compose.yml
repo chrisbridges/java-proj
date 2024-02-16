@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  auth-service:
+    image: auth-service
+    ports:
+      - "8081:8080"
+    environment:
+      - "SPRING_PROFILES_ACTIVE=dev"
+      - "APP_JWT_SECRET=YourJWTSecretKey"
+      - "APP_JWT_EXPIRATIONMS=86400000"
+
+  api-service:
+    image: api-service
+    ports:
+      - "8080:8080"
+    environment:
+      - "SPRING_PROFILES_ACTIVE=dev"
+      - "AUTH_SERVICE_URL=http://auth-service:8080"

@@ -7,6 +7,22 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
+import main.java.com.example.authservice.model.User;
+
+// import main.java.com.example.authservice.security.JwtTokenFilterConfigurer;
+// import main.java.com.example.authservice.security.JwtTokenProvider;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.context.annotation.Bean;
+// import org.springframework.context.annotation.Configuration;
+// import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+// import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+// import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+// import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+// import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+// import org.springframework.security.crypto.password.PasswordEncoder;
+// import org.springframework.security.authentication.AuthenticationManager;
+// import org.springframework.security.config.http.SessionCreationPolicy;
+
 import java.util.Date;
 
 @Component
@@ -19,12 +35,12 @@ public class JwtTokenProvider {
   private int jwtExpirationMs;
 
   public String generateToken(Authentication authentication) {
-    UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+    User user = (User) authentication.getPrincipal();
     Date now = new Date();
     Date expiryDate = new Date(now.getTime() + jwtExpirationMs);
 
     return Jwts.builder()
-        .setSubject((userPrincipal.getUsername()))
+        .setSubject((user.getUsername()))
         .setIssuedAt(new Date())
         .setExpiration(expiryDate)
         .signWith(SignatureAlgorithm.HS512, jwtSecret)
