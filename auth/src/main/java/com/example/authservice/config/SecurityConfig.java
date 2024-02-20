@@ -19,24 +19,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // .cors().and() // disable CORS
         .anyRequest().authenticated()
         .and()
-        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); // Ensure stateless session
-                                                                                     // management for API-type
-                                                                                     // authentication
+        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+    // Ensure stateless session
+    // management for API-type
+    // authentication
   }
 
   @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
-
-  // @Bean // CORS bean
-  // public WebMvcConfigurer corsConfigurer() {
-  // return new WebMvcConfigurer() {
-  // @Override
-  // public void addCorsMappings(CorsRegistry registry) {
-  // registry.addMapping("/**").allowedOrigins("*");
-  // }
-  // };
-  // }
 
 }

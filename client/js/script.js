@@ -14,7 +14,7 @@ function register() {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (data.id) {
+      if (data) {
         alert("Registration successful");
       } else {
         alert("Registration failed");
@@ -30,12 +30,12 @@ function login() {
   const username = document.getElementById("loginUsername").value;
   const password = document.getElementById("loginPassword").value;
 
-  fetch(`${authUrl}/login`, {
+  fetch(`${authUrl}/login?username=${username}&password=${password}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ username, password }),
+    // body: JSON.stringify({ username, password }),
   })
     .then((response) => {
       if (response.ok) {
