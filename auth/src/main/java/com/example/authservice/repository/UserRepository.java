@@ -1,6 +1,6 @@
-package main.java.com.example.authservice.repository;
+package com.example.authservice.repository;
 
-import main.java.com.example.authservice.model.User;
+import com.example.authservice.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {

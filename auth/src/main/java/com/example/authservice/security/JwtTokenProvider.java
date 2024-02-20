@@ -1,4 +1,4 @@
-package main.java.com.example.authservice.security;
+package com.example.authservice.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
