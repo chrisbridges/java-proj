@@ -2,7 +2,8 @@
 FROM nginx:alpine
 
 # Copy custom nginx.conf
-COPY nginx.conf ./nginx.conf
+# WORKDIR /etc/nginx
+COPY ./nginx.conf ./conf.d/default.conf
 
 # Copy static resource to nginx server
 COPY ./index.html /usr/share/nginx/html/index.html
