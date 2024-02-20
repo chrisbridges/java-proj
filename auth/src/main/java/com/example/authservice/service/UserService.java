@@ -1,24 +1,28 @@
 package main.java.com.example.authservice.service;
 
-import main.java.com.example.authservice.model.User;
-import main.java.com.example.authservice.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.authservice.model.User;
+import com.example.authservice.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
 
-  @Autowired
-  private UserRepository userRepository;
+  private final UserRepository userRepository;
+  private final PasswordEncoder passwordEncoder;
 
-  @Autowired
-  private PasswordEncoder passwordEncoder;
+  public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    this.userRepository = userRepository;
+    this.passwordEncoder = passwordEncoder;
+  }
 
-  public User registerUser(User user) {
-    // Encrypt the password
+  public User register(User user) {
     user.setPassword(passwordEncoder.encode(user.getPassword()));
-    // Save the new user
     return userRepository.save(user);
+  }
+
+  public boolean checkCredentials(String username, String password) {
+    User user = userRepository.findByUsername(username);
+    return user != null && passwordEncoder.matches(password, user.getPassword());
   }
 }
