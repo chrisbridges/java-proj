@@ -1,5 +1,5 @@
-const apiUrl = "http://localhost:8080"; // Your API endpoint
-const authUrl = "http://localhost:8081"; // Your Auth endpoint
+const apiUrl = "http://localhost:8080/api"; // Your API endpoint
+const authUrl = "http://localhost:8081/auth"; // Your Auth endpoint
 
 function register() {
   const username = document.getElementById("registerUsername").value;
@@ -62,7 +62,7 @@ function showCustomerData() {
     return;
   }
 
-  fetch(`${apiUrl}/api/customers`, {
+  fetch(`${apiUrl}/customers`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${authToken}`,
