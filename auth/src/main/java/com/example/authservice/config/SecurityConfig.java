@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -15,8 +16,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     http.csrf().disable()
         .authorizeRequests()
         .antMatchers("/auth/**").permitAll()
-        .cors().and() // disable CORS
-        .anyRequest().authenticated();
+        // .cors().and() // disable CORS
+        .anyRequest().authenticated()
+        .and()
+        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); // Ensure stateless session
+                                                                                     // management for API-type
+                                                                                     // authentication
   }
 
   @Bean
@@ -24,14 +29,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     return new BCryptPasswordEncoder();
   }
 
-  @Bean // CORS bean
-  public WebMvcConfigurer corsConfigurer() {
-    return new WebMvcConfigurer() {
-      @Override
-      public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedOrigins("*");
-      }
-    };
-  }
+  // @Bean // CORS bean
+  // public WebMvcConfigurer corsConfigurer() {
+  // return new WebMvcConfigurer() {
+  // @Override
+  // public void addCorsMappings(CorsRegistry registry) {
+  // registry.addMapping("/**").allowedOrigins("*");
+  // }
+  // };
+  // }
 
 }
