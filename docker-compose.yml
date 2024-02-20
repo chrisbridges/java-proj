@@ -11,7 +11,7 @@ services:
       - "8081:8080"
     environment:
       - "SPRING_PROFILES_ACTIVE=dev"
-      - "APP_JWT_SECRET=YourJWTSecretKey"
+      - "APP_JWT_SECRET=Bh16zxgqc17bj7bFzoMNgZkTBV0fLvTdI89mohB6gbBT3HB/pjPf8NTqwtjFxE5cXV+ODC0BOEvgUFxzmh1x8A=="
       - "APP_JWT_EXPIRATIONMS=86400000"
 
   api-service:
