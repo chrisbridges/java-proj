@@ -14,7 +14,7 @@ function register() {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (data) {
+      if (data.token) {
         alert("Registration successful");
       } else {
         alert("Registration failed");
