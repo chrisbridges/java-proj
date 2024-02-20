@@ -17,13 +17,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .csrf().disable()
         .authorizeRequests()
         .antMatchers("/auth/**").permitAll()
-        // .cors().and() // disable CORS
         .anyRequest().authenticated()
         .and()
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-    // Ensure stateless session
-    // management for API-type
-    // authentication
   }
 
   @Bean
